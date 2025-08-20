@@ -27,8 +27,8 @@ int ReadFile(const char* FNAME); // проверка файла на ошибк�
 int ReadTable(const char* FNAME, Data* Arr, int N_strings); // считывание данных из файла
 void Sort(Index* IndexStrs, const int N_strings); // функция сортировки
 
-int main() // главная функция программы
-{
+int main() { // главная функция программы
+
 	int N_strings; // количество строк в файле
 	int real_size; // количество строк без ошибок
 	N_strings = ReadFile(FNAME);
@@ -71,7 +71,7 @@ void Sort(Index* IndexStrs, const int N_strings) { // функция сорти�
 	}
 }
 
-int ReadTable(const char* FNAME, Data* Arr, int N_strings) {
+int ReadTable(const char* FNAME, Data* Arr, int N_strings) { // функция чтения и проверки данных о рейсах из файла
 	ifstream file(FNAME);
 	char boardingTime[6]; //время посадки
 	char planeModel[8]; //марка ЛА
@@ -145,7 +145,7 @@ int ReadTable(const char* FNAME, Data* Arr, int N_strings) {
 	return count;
 }
 
-void PrintTable(Index* IndexStrs, Data* Arr, int N_strings) {
+void PrintTable(Index* IndexStrs, Data* Arr, int N_strings) { // функция вывода отформатированнуой таблицы данных рейсов, сгруппированных по аэродрому
 	const char LTCorn = (char)218;  // левый верхний угол
 	const char RTCorn = (char)191;  // правый верхний угол
 	const char HorLine = (char)196; // горизонтальная линия 
@@ -206,7 +206,7 @@ void PrintTable(Index* IndexStrs, Data* Arr, int N_strings) {
 		<< RBCorn << endl;
 }
 
-int ReadFile(const char* FNAME) {
+int ReadFile(const char* FNAME) { // функция валидации файла: проверка существования, пустоты и подсчет строк с выводом содержимого
 	setlocale(LC_ALL, "ru");
 
 	ifstream file(FNAME);
