@@ -32,19 +32,20 @@ int main() { // главная функция программы
 	int N_strings; // количество строк в файле
 	int real_size; // количество строк без ошибок
 	N_strings = ReadFile(FNAME);
+
 	if (N_strings == 0) {
 		return 0;
 	}
+
 	Data* Arr = new Data[N_strings];
-
 	real_size = ReadTable(FNAME, Arr, N_strings);
-
 	Index* IndexStrs = new Index[real_size];
-	for (int i = 0; i < real_size; i++)
-	{
+
+	for (int i = 0; i < real_size; i++) {
 		IndexStrs[i].id = i;
 		IndexStrs[i].time = Arr[i].boardingTime;
 	}
+
 	Sort(IndexStrs, real_size);
 	PrintTable(IndexStrs, Arr, real_size);
 	system("pause");
@@ -73,13 +74,13 @@ void Sort(Index* IndexStrs, const int N_strings) { // функция сорти�
 
 int ReadTable(const char* FNAME, Data* Arr, int N_strings) { // функция чтения и проверки данных о рейсах из файла
 	ifstream file(FNAME);
-	char boardingTime[6]; //время посадки
-	char planeModel[8]; //марка ЛА
-	char number[7]; //бортовой номер
-	char airport[4]; //аэродром
-	bool error_find;
-	int hour; //часы
-	int minute; //минуты
+	char boardingTime[6]; // время посадки
+	char planeModel[8]; // марка ЛА
+	char number[7]; // бортовой номер
+	char airport[4]; // аэродром
+	bool error_find; // флаг наличия ошибок
+	int hour; // часы
+	int minute; // минуты
 	int count = 0;
 
 	for (int i = 0; i < N_strings; i++) {
@@ -145,7 +146,7 @@ int ReadTable(const char* FNAME, Data* Arr, int N_strings) { // функция �
 	return count;
 }
 
-void PrintTable(Index* IndexStrs, Data* Arr, int N_strings) { // функция вывода отформатированнуой таблицы данных рейсов, сгруппированных по аэродрому
+void PrintTable(Index* IndexStrs, Data* Arr, int N_strings) { // функция вывода отформатированной таблицы данных рейсов, сгруппированных по аэродрому
 	const char LTCorn = (char)218;  // левый верхний угол
 	const char RTCorn = (char)191;  // правый верхний угол
 	const char HorLine = (char)196; // горизонтальная линия 
@@ -214,15 +215,14 @@ int ReadFile(const char* FNAME) { // функция валидации файл�
 	char c[MaxLen]; // массив для считывания строки
 
 	// файл не найден
-	if (!file)
-	{
+	if (!file) {
 		cout << "Файл " << FNAME << " не найден\n";
 		file.close(); // закрыть файл
 		return 0; // выход по ошибке
 	}
 
-	if (file.peek() == EOF) // проверка на пустой файл
-	{
+	// проверка на пустой файл
+	if (file.peek() == EOF) { 
 		cout << "Файл \"" << FNAME << "\" пуст." << endl;
 		file.close();
 		return 0;
